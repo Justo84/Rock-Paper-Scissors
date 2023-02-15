@@ -1,4 +1,7 @@
 const startGameBtn = document.getElementById('start-game-btn');
+const gameStatus = document.getElementById('message');
+const playerStatus = document.getElementById('player-choice');
+const computerStatus = document.getElementById('computer-choice');
 
 const ROCK = "ROCK"
 const PAPER = "PAPER"
@@ -52,9 +55,17 @@ startGameBtn.addEventListener("click", () => {
     gameIsRunning = true
     console.log("Game is starting...")
     const playerSelection = getPlayerChoice();
-    console.log(playerSelection)
+    playerStatus.innerText = playerSelection
     const computerSelection = getRandomChoice();
-    console.log(computerSelection)
+    computerStatus.innerText = computerSelection
     const winner = getWinner(computerSelection, playerSelection)
-    console.log(`The winner is ${winner}`)
+    let message;
+    if (winner === RESULT_DRAW) {
+        message = "A draw"
+    } else if (winner === PLAYER_WINS) {
+        message = "You won!"
+    } else {
+        message = "Computer won!"
+    }
+    gameStatus.innerText = message
 }) 
