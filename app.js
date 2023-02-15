@@ -4,6 +4,9 @@ const ROCK = "ROCK"
 const PAPER = "PAPER"
 const SCISSORS = "SCISSORS"
 const DEFAULT_CHOICE = getRandomChoice()
+const RESULT_DRAW = "DRAW"
+const PLAYER_WINS = "YOU WON"
+const COMPUTER_WINS = "COMPUTER WON"
 
 let gameIsRunning = false;
 
@@ -32,6 +35,16 @@ function getRandomChoice() {
     }
 }
 
+const getWinner = function(cChoice, pChoice) {
+    if (cChoice === pChoice) {
+        return RESULT_DRAW
+    } else if (cChoice === ROCK && pChoice === PAPER || cChoice === PAPER && pChoice === SCISSORS || cChoice === SCISSORS && pChoice === ROCK) {
+        return PLAYER_WINS
+    } else {
+        return COMPUTER_WINS
+    }
+}
+
 startGameBtn.addEventListener("click", () => {
     if (gameIsRunning) {
         return
@@ -40,4 +53,8 @@ startGameBtn.addEventListener("click", () => {
     console.log("Game is starting...")
     const playerSelection = getPlayerChoice();
     console.log(playerSelection)
+    const computerSelection = getRandomChoice();
+    console.log(computerSelection)
+    const winner = getWinner(computerSelection, playerSelection)
+    console.log(`The winner is ${winner}`)
 }) 
