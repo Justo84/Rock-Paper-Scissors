@@ -70,3 +70,19 @@ startGameBtn.addEventListener("click", () => {
     gameStatus.innerText = message
     gameIsRunning = false;
 }) 
+
+// not part of the game
+
+// this builds an array inside of the function for when you don't know how many arguments you're getting
+// this is called Rest parameter
+// it must be the last parameter if there are more than one
+const sumUp = (...numbers) => {
+    let sum = 0;
+    for (numb of numbers) {
+        sum += numb
+    }
+    return sum;
+}
+
+console.log(sumUp(1, 33, 21, 1, 2, -5, -100, 202))
+
