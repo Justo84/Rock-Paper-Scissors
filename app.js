@@ -77,12 +77,15 @@ startGameBtn.addEventListener("click", () => {
 // this is called Rest parameter
 // it must be the last parameter if there are more than one
 const sumUp = (...numbers) => {
+    const validateNumber = (number) => {
+        return isNaN(number) ? 0 : number;
+    }
     let sum = 0;
     for (numb of numbers) {
-        sum += numb
+        sum += validateNumber(numb)
     }
     return sum;
 }
 
-console.log(sumUp(1, 33, 21, 1, 2, -5, -100, 202))
+console.log(sumUp(1, 33, 21, "pizza", 1, 2, -5, -100, 202))
 
