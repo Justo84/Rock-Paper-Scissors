@@ -38,7 +38,7 @@ function getRandomChoice() {
     }
 }
 
-const getWinner = function(cChoice, pChoice = DEFAULT_CHOICE) {
+const getWinner = function (cChoice, pChoice = DEFAULT_CHOICE) {
     if (cChoice === pChoice) {
         return RESULT_DRAW
     } else if (cChoice === ROCK && pChoice === PAPER || cChoice === PAPER && pChoice === SCISSORS || cChoice === SCISSORS && pChoice === ROCK) {
@@ -69,23 +69,28 @@ startGameBtn.addEventListener("click", () => {
     }
     gameStatus.innerText = message
     gameIsRunning = false;
-}) 
+})
 
 // not part of the game
 
 // this builds an array inside of the function for when you don't know how many arguments you're getting
 // this is called Rest parameter
 // it must be the last parameter if there are more than one
-const sumUp = (...numbers) => {
+const sumUp = (resultHandler, ...numbers) => {
     const validateNumber = (number) => {
         return isNaN(number) ? 0 : number;
     }
     let sum = 0;
     for (numb of numbers) {
         sum += validateNumber(numb)
-    }
-    return sum;
+    };
+    resultHandler(sum); // call back function pointing to showResult, through the sumUp function call below
+};
+
+const showResult = (result) => {
+    gameStatus.innerText = `This sumUp function is telling us... ${result}`
 }
 
+sumUp(showResult, 33, 21, "pizza", 1, 2, -5, -100, 202)
 console.log(sumUp(1, 33, 21, "pizza", 1, 2, -5, -100, 202))
 
