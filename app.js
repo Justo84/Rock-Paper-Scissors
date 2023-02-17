@@ -87,10 +87,18 @@ const sumUp = (resultHandler, ...numbers) => {
     resultHandler(sum); // call back function pointing to showResult, through the sumUp function call below
 };
 
+const subtractUp = (resultHandler, ...numbers ) => {
+    let sum = 0;
+    for (const num of numbers) {
+        sum -= num;
+    }
+    resultHandler(sum)
+}
+
 const showResult = (result) => {
     gameStatus.innerText = `This sumUp function is telling us... ${result}`
 }
 
 sumUp(showResult, 33, 21, "pizza", 1, 2, -5, -100, 202)
 console.log(sumUp(1, 33, 21, "pizza", 1, 2, -5, -100, 202))
-
+subtractUp(showResult, 1, 2, 5)
