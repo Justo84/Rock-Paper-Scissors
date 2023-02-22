@@ -76,29 +76,33 @@ startGameBtn.addEventListener("click", () => {
 // this builds an array inside of the function for when you don't know how many arguments you're getting
 // this is called Rest parameter
 // it must be the last parameter if there are more than one
-const sumUp = (resultHandler, ...numbers) => {
+const combineNumbers = (resultHandler, operation, ...numbers) => {
     const validateNumber = (number) => {
         return isNaN(number) ? 0 : number;
     }
     let sum = 0;
     for (numb of numbers) {
-        sum += validateNumber(numb)
+        if (operation === "ADD") {
+            sum += validateNumber(numb)
+        } else {
+            sum -= validateNumber(numb)
+        }
     };
     resultHandler(sum); // call back function pointing to showResult, through the sumUp function call below
 };
 
-const subtractUp = (resultHandler, ...numbers ) => {
-    let sum = 0;
-    for (const num of numbers) {
-        sum -= num;
-    }
-    resultHandler(sum)
+// const subtractUp = (resultHandler, ...numbers ) => {
+//     let sum = 0;
+//     for (const num of numbers) {
+//         sum -= num;
+//     }
+//     resultHandler(sum)
+// }
+
+const showResult = (messageText, result) => {
+    gameStatus.innerText = `The ${messageText} function is telling us... ${result}`
 }
 
-const showResult = (result) => {
-    gameStatus.innerText = `This sumUp function is telling us... ${result}`
-}
-
-sumUp(showResult, 33, 21, "pizza", 1, 2, -5, -100, 202)
-console.log(sumUp(1, 33, 21, "pizza", 1, 2, -5, -100, 202))
-subtractUp(showResult, 1, 2, 5)
+combineNumbers(showResult.bind(this, "add"), "ADD", 33, 21, "pizza", 1, 2, -5, -100, 202)
+// combineNumbers(showResult, "ADD", 1, 33, 21, "pizza", 1, 2, -5, -100, 202)
+// combineNumbers(showResult, "SUB", 1, 2, 5)
