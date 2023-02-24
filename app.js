@@ -106,3 +106,21 @@ const showResult = (messageText, result) => {
 combineNumbers(showResult.bind(this, "add"), "ADD", 33, 21, "pizza", 1, 2, -5, -100, 202)
 // combineNumbers(showResult, "ADD", 1, 33, 21, "pizza", 1, 2, -5, -100, 202)
 // combineNumbers(showResult, "SUB", 1, 2, 5)
+
+speak = function(sound) {
+    console.log(this.name, "is", sound)
+}
+
+let dog = {
+    name: "dog"
+}
+
+let cat = {
+    name: "cat"
+}
+
+bark = speak.bind(dog, "barking")
+meow = speak.bind(cat, "meowing")
+
+bark()
+meow()
